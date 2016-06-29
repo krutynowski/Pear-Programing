@@ -1,6 +1,9 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, flash, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 from forms import UserForm
+from flask_wtf import CsrfProtect
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 
 app = Flask(__name__)
 bcrypt = Bcrypt
@@ -60,24 +63,16 @@ def signup():
 def index():
   return render_template('index.html', users = Users.query.all())
 
-@app.route('/users', method =['POST'])
+@app.route('/users', methods =['POST'])
 
 @app.route('/logout')
-
-
-def create_users():
-  form = UserForm() 
-  new_user = User(form.username.data, form.password.data)
-  db.session.add(new_user)
-  db.session.commit()
-  return redirect(url_for('index')
-
-
-
-
-
-
+def logout():
+  logout_user()
+  return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
+
+
+

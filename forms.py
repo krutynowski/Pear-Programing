@@ -1,12 +1,12 @@
 from flask_wtf import Form
 from wtforms import StringField, PasswordField, FloatField
-from  wtforms.validators import DataRequiered, Length 
+from  wtforms.validators import DataRequired, Length 
 
 class UserForm(Form):
-  username = StringField('username', validators = [DataRequiered() ])
-  password = PasswordField('password', validators = [DataRequiered(), Length(6) ])
+  username = StringField('username', validators = [DataRequired() ])
+  password = PasswordField('password', validators = [DataRequired(), Length(6) ])
 
 
 class FishForm(Form):
-  type = StringField('type', validators = [DataRequiered() ])
-  weight = PasswordField('weight', validators = [DataRequiered(), Length(6) ])  
+  type = StringField('type', validators = [DataRequired() ])
+  weight = PasswordField('weight', validators = [DataRequired(), Length(6) ])  
